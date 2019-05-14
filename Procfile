@@ -1,2 +1,2 @@
 web: node index.js
-worker: /bin/echo { \"key\": \"`/bin/echo $GOOGLE_SECRET`\" } > $GOOGLE_APPLICATION_CREDENTIALS
+worker: echo { \"key\": \"$GOOGLE_SECRET\" } > $GOOGLE_APPLICATION_CREDENTIALS
