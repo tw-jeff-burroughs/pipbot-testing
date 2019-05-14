@@ -6,6 +6,6 @@
   "keywords": ["node", "express", "heroku"],
   "image": "heroku/nodejs",
   "scripts": {
-     "postdeploy"; "echo { \"key\": \"`echo $GOOGLE_SECRET`\" } > $GOOGLE_APPLICATION_CREDENTIALS"
+     "postdeploy"; "bundle exec echo { \"key\": \"`echo $GOOGLE_SECRET`\" } > $GOOGLE_APPLICATION_CREDENTIALS"
   }
 }
