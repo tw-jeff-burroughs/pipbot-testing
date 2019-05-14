@@ -1,2 +1,1 @@
-web: node index.js
-release: ./release.sh
+web: ./release.sh
