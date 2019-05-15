@@ -30,8 +30,7 @@ for c in ${CHUNKS[@]}; do
 done
 
 mkdir -p $FILE_PATH
+cd $FILE_PATH
 
 # read secrets from env var and setup google's required file
 echo { \"key\": \"`echo $GOOGLE_SECRET`\" } > $FILE
-
-cat $FILE
