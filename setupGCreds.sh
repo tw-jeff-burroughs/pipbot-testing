@@ -6,7 +6,7 @@ FILE=`echo $GOOGLE_APPLICATION_CREDENTIALS`
 # make array of path tokens
 IFS='/' read -r -a CHUNKS <<< "$FILE"
 
-cd /
+unset CHUNKS[0]
 
 lastIndex=${#CHUNKS[@]}-1
 
