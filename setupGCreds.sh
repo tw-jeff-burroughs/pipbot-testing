@@ -34,12 +34,7 @@ if [[ ! -d $FILE_PATH ]]
         mkdir -p $FILE_PATH
 fi
 
-# read secrets from env var and setup google's required file
-echo { \"key\": \"`echo $GOOGLE_SECRET`\" } > $FILE
-
 cd $FILE_PATH
 
-chattr +i $FILE
-
-ls ./
-cat $FILE
+# read secrets from env var and setup google's required file
+echo { \"key\": \"`echo $GOOGLE_SECRET`\" } > $FILE_NAME
