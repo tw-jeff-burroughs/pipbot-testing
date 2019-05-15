@@ -1,25 +1,25 @@
 #!/bin/bash
-
+  
 # get file path
 FILE=`echo $GOOGLE_APPLICATION_CREDENTIALS`
 
 # make array of path tokens
 IFS='/' read -r -a CHUNKS <<< "$FILE"
 
-unset CHUNKS[0]
+LESS_CHUNKS=${CHUNKS[@]:2}
 
-lastIndex=${#CHUNKS[@]}-1
+lastIndex=${#LESS_CHUNKS[@]}-1
 
-FILE_NAME=${CHUNKS[lastIndex]}
+FILE_NAME=${LESS_CHUNKS[lastIndex]}
 
-unset CHUNKS[lastIndex]
+unset LESS_CHUNKS[lastIndex]
 
-FILE_PATH=${CHUNKS[@]}
+FILE_PATH=${LESS_CHUNKS[@]}
 
-for c in ${CHUNKS[@]}
+for c in ${LESS_CHUNKS[@]}
     do
         if [[ ! -d $c ]]
-            then 
+            then
                 mkdir $c
         fi
         cd $c
