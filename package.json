@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "node test.js",
-    "heroku-postbuild": 'echo { "key": "`echo $GOOGLE_SECRET`" } > $GOOGLE_APPLICATION_CREDENTIALS'
+    "heroku-postbuild": "echo { "key": "`echo $GOOGLE_SECRET`" } > $GOOGLE_APPLICATION_CREDENTIALS"
   },
   "dependencies": {
     "ejs": "^2.5.6",
