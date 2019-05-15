@@ -34,4 +34,4 @@ mkdir -p $FILE_PATH
 # read secrets from env var and setup google's required file
 echo { \"key\": \"`echo $GOOGLE_SECRET`\" } > $FILE
 
-echo `ls -lah $FILE_PATH`
+cat $FILE
