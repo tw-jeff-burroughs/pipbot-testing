@@ -1,29 +1,29 @@
 #!/bin/bash
-  
+
+# This script assumes that the path for storing the json file
+# will be under the app directory
+
 # get file path
 FILE=`echo $GOOGLE_APPLICATION_CREDENTIALS`
 
 # make array of path tokens
 IFS='/' read -r -a CHUNKS <<< "$FILE"
 
-LESS_CHUNKS=${CHUNKS[@]:2}
+# remove app from the front since we're in postbuild in the app dir
+app=(app)
+tail=(${CHUNKS[@]/$app})
 
-lastIndex=${#LESS_CHUNKS[@]}-1
+# get file name
+tailLen=${#tail[@]}
+fileName=${tail[tailLen-1]}
 
-FILE_NAME=${LESS_CHUNKS[lastIndex]}
+# remove file name leaving just the path to create if it's not there
+fn=(fileName)
+justPath=(${tail[@]/$fn})
 
-unset LESS_CHUNKS[lastIndex]
+if [[ ! -d $justPath ]]; then
+    mkdir -p $justPath
+fi
 
-FILE_PATH=${LESS_CHUNKS[@]}
-
-for c in ${LESS_CHUNKS[@]}
-    do
-        if [[ ! -d $c ]]
-            then
-                mkdir $c
-        fi
-        cd $c
-        echo `pwd`
-done
-
-echo { \"key\": \"`echo $GOOGLE_SECRET`\" } > $FILE_NAME
+# write the file at the path in GOOGLE_APPLICATION_CREDENTIALS
+echo { \"key\": \"`echo $GOOGLE_SECRET`\" } > "$justPath/$fileName"
