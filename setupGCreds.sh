@@ -1,19 +1,28 @@
 #!/bin/bash
-  
+
 # get file path
 FILE=`echo $GOOGLE_APPLICATION_CREDENTIALS`
 
 # make array of path tokens
-CHUNKS=$(echo $FILE | tr "/" "\n")
+IFS='/' read -r -a CHUNKS <<< "$FILE"
 
-# set counter up to get final array location
-lastIndex=-1;
+cd /
 
-# create value for lastIndex ---- there may be a better way to do this. -----
-for c in ${CHUNKS[@]}; do
-    (( lastIndex++ ))
+lastIndex=${#CHUNKS[@]}-1
+
+FILE_NAME=${CHUNKS[lastIndex]}
+
+unset CHUNKS[lastIndex]
+
+FILE_PATH=${CHUNKS[@]}
+
+for c in ${CHUNKS[@]}
+    do
+        if [[ ! -d $c ]]
+            then 
+                mkdir $c
+        fi
+        cd $c
 done
 
-mkdir .data
-cd .data
-echo { \"key\": \"`echo $GOOGLE_SECRET`\" } > $CHUNKS[lastIndex]
+echo { \"key\": \"`echo $GOOGLE_SECRET`\" } > $FILE_NAME
