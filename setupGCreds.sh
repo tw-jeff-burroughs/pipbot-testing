@@ -27,18 +27,18 @@ currentIndex=0;
 for c in ${CHUNKS[@]}; do
     if [[ $currentIndex -lt  $lastIndex ]]
         then
-            FILE_PATH="$FILE_PATH/$c"
+            # if doens't exist build dir structure and go inside
+            if [[ ! -d $c ]]
+                then
+                    mkdir $c
+            fi
+            cd $c
         else
-            FILE_NAME="$c"
+            # read secrets from env var and setup google's required file
+            echo { \"key\": \"`echo $GOOGLE_SECRET`\" } > $c
     fi
     (( currentIndex++ ))
 done
 
-# create dir if it doesnt exist
-mkdir .data
 
-# enter path
-cd .data
 
-# read secrets from env var and setup google's required file
-echo { \"key\": \"`echo $GOOGLE_SECRET`\" } > $FILE_NAME
