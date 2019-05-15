@@ -35,13 +35,10 @@ for c in ${CHUNKS[@]}; do
 done
 
 # create dir if it doesnt exist
-if [[ ! -d $FILE_PATH ]]
-    then
-        mkdir -p $FILE_PATH
-fi
+mkdir .data
 
 # enter path
-cd $FILE_PATH
+cd .data
 
 # read secrets from env var and setup google's required file
 echo { \"key\": \"`echo $GOOGLE_SECRET`\" } > $FILE_NAME
