@@ -12,6 +12,9 @@ lastIndex=-1;
 # set variable to hold path to file for creating dir if not exist
 FILE_PATH=''
 
+# set variable to hold just the file name
+FILE_PATH=''
+
 # create value for lastIndex ---- there may be a better way to do this. -----
 for c in ${CHUNKS[@]}; do
     (( lastIndex++ ))
@@ -25,15 +28,19 @@ for c in ${CHUNKS[@]}; do
     if [[ $currentIndex -lt  $lastIndex ]]
         then
             FILE_PATH="$FILE_PATH/$c"
+        else
+            FILE_NAME="$c"
     fi
     (( currentIndex++ ))
 done
 
+# create dir if it doesnt exist
 if [[ ! -d $FILE_PATH ]]
     then
         mkdir -p $FILE_PATH
 fi
 
+# enter path
 cd $FILE_PATH
 
 # read secrets from env var and setup google's required file
