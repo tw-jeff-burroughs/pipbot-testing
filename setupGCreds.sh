@@ -2,6 +2,10 @@
 
 # This script assumes that the path for storing the json file
 # will be under the app directory
+# we also know that since we're in postbuild in heroku that the 
+# current path when executing this script is not /app
+# it is /tmp/A_VERY_LONG_ID_VALUE/app which is why we dump the 
+# app from the beginning of the path
 
 # get file path
 FILE=`echo $GOOGLE_APPLICATION_CREDENTIALS`
