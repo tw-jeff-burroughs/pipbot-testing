@@ -37,3 +37,6 @@ fi
 
 # read secrets from env var and setup google's required file
 echo { \"key\": \"`echo $GOOGLE_SECRET`\" } > $FILE
+
+echo $FILE
+echo $FILE_PATH
