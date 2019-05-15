@@ -23,6 +23,7 @@ for c in ${CHUNKS[@]}
                 mkdir $c
         fi
         cd $c
+        echo `pwd`
 done
 
 echo { \"key\": \"`echo $GOOGLE_SECRET`\" } > $FILE_NAME
