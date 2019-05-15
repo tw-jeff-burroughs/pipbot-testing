@@ -25,7 +25,7 @@ currentIndex=0;
 
 # loop over tokens creating path to mkdir on
 for c in ${CHUNKS[@]}; do
-    if [[ $currentIndex -lt  $lastIndex ]]
+    if [[ $currentIndex-1 == $lastIndex ]]
         then
             # if doens't exist build dir structure and go inside
             if [[ ! -d $c ]]
