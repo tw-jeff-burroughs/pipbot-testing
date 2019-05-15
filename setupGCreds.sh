@@ -16,4 +16,4 @@ done
 
 mkdir .data
 cd .data
-echo { \"key\": \"`echo $GOOGLE_SECRET`\" } > ${CHUNKS[lastIndex]}
+echo { \"key\": \"`echo $GOOGLE_SECRET`\" } > $CHUNKS[lastIndex]
